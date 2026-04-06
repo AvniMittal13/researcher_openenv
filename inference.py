@@ -36,7 +36,7 @@ from openai import OpenAI
 
 API_BASE_URL = os.getenv("API_BASE_URL", "https://api.groq.com/openai/v1")
 MODEL_NAME = os.getenv("MODEL_NAME", "llama-3.1-8b-instant")
-HF_TOKEN = os.getenv("HF_TOKEN") or os.getenv("API_KEY") or "not-set"
+HF_TOKEN = os.getenv("HF_TOKEN") or os.getenv("API_KEY")
 ENV_URL = os.getenv("ENV_URL", "http://localhost:8000")
 BENCHMARK = "researcher_env"
 MAX_STEPS = 20

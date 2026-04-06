@@ -1,0 +1,27 @@
+[
+  {
+    "topic_id": "topic_01",
+    "research_area": "Retrieval-Augmented Generation (RAG) for domain-specific applications",
+    "expected_keywords": ["RAG", "retrieval", "vector database", "embedding", "chunking", "hallucination"]
+  },
+  {
+    "topic_id": "topic_02",
+    "research_area": "Parameter-efficient fine-tuning methods for large language models",
+    "expected_keywords": ["LoRA", "QLoRA", "adapter", "fine-tuning", "PEFT", "parameters"]
+  },
+  {
+    "topic_id": "topic_03",
+    "research_area": "LLM evaluation benchmarks and their limitations",
+    "expected_keywords": ["benchmark", "MMLU", "HumanEval", "leaderboard", "contamination", "evaluation"]
+  },
+  {
+    "topic_id": "topic_04",
+    "research_area": "Vision-language models and multimodal AI",
+    "expected_keywords": ["CLIP", "multimodal", "vision", "image-text", "contrastive", "VLM"]
+  },
+  {
+    "topic_id": "topic_05",
+    "research_area": "Reinforcement learning from human feedback (RLHF) alternatives",
+    "expected_keywords": ["RLHF", "DPO", "preference", "alignment", "reward model", "KTO"]
+  }
+]

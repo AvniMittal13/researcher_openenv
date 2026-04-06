@@ -1,0 +1,28 @@
+[project]
+name = "researcher-env"
+version = "1.0.0"
+description = "Research agent environment for OpenEnv — 3-task pipeline: analysis, experimentation, report"
+requires-python = ">=3.11"
+dependencies = [
+    "openenv-core>=0.2.2",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "pydantic>=2.0.0",
+    "duckduckgo-search>=7.0.0",
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "PyMuPDF>=1.24.0",
+    "matplotlib>=3.8.0",
+    "numpy>=1.26.0",
+    "openai>=1.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["env*", "graders*", "server*", "tools*", "tasks*"]
+
+[project.scripts]
+server = "server.app:main"

@@ -109,7 +109,7 @@ _MAX_CONTENT_CHARS = 3000
 def _call_llm_judge(prompt: str) -> dict[str, Any]:
     """Call the LLM judge via OpenAI-compatible API. Returns parsed JSON."""
     api_base = os.environ.get("API_BASE_URL", "")
-    api_key = os.environ.get("HF_TOKEN", "not-set")
+    api_key = os.environ.get("API_KEY") or os.environ.get("HF_TOKEN", "not-set")
     model = os.environ.get("MODEL_NAME", "")
 
     if not api_base or not model:

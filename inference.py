@@ -34,9 +34,9 @@ from openai import OpenAI
 # Config
 # ------------------------------------------------------------------
 
-API_BASE_URL = os.getenv("API_BASE_URL", "https://api.groq.com/openai/v1")
-MODEL_NAME = os.getenv("MODEL_NAME", "llama-3.1-8b-instant")
-HF_TOKEN = os.getenv("HF_TOKEN") or os.getenv("API_KEY")
+API_BASE_URL = os.getenv("API_BASE_URL") or "https://api.groq.com/openai/v1"
+MODEL_NAME = os.getenv("MODEL_NAME") or "llama-3.1-8b-instant"
+API_KEY = os.getenv("API_KEY") or os.getenv("HF_TOKEN")
 ENV_URL = os.getenv("ENV_URL", "http://localhost:8000")
 BENCHMARK = "researcher_env"
 MAX_STEPS = 20
@@ -307,7 +307,7 @@ def main():
     parser.add_argument("--tasks", default="1,2,3", help="Comma-separated task numbers to run")
     args = parser.parse_args()
 
-    client = OpenAI(base_url=API_BASE_URL, api_key=HF_TOKEN)
+    client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
     tasks = [int(t) for t in args.tasks.split(",")]
 
     total_score = 0.0

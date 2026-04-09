@@ -280,15 +280,16 @@ def run_episode(
                 error=error,
             )
 
-        # Compute score in [0, 1]
+        # Compute score in (0, 1) — validator rejects exactly 0.0 and 1.0
         score = obs.get("cumulative_reward", 0.0)
-        score = min(max(score, 0.0), 1.0)
-        success = score > 0.0
+        score = max(0.01, min(score, 0.99))
+        success = score > 0.01
 
     except Exception as exc:
         log_step(step=steps_taken + 1, action="error", reward=0.0, done=True, error=str(exc))
         rewards.append(0.0)
         steps_taken += 1
+        score = 0.01
 
     finally:
         log_end(success=success, steps=steps_taken, score=score, rewards=rewards)

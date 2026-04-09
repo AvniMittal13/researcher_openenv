@@ -189,7 +189,7 @@ def grade_task(
     )
     if not ok:
         return GradeResult(
-            reward=0.0,
+            reward=0.01,
             breakdown={"reason": "structural checks failed"},
             feedback="Required output missing or too short",
         )
@@ -208,8 +208,10 @@ def grade_task(
     llm_score = max(0.0, min(1.0, llm_score))
 
     final = llm_score * 0.85 + structural_bonus * 0.15
+    # Clamp to strictly (0, 1) — validator rejects 0.0 and 1.0
+    final = max(0.01, min(final, 0.99))
     return GradeResult(
-        reward=min(final, 1.0),
+        reward=final,
         breakdown=llm_result.get("breakdown", {}),
         feedback=llm_result.get("feedback", ""),
     )

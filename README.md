@@ -91,7 +91,59 @@ Two-layer system:
 1. **Structural checks** (deterministic): file exists, word count, headers, citations
 2. **LLM-as-judge** (per-task rubric): evaluates quality, depth, accuracy
 
-Final reward = LLM score × 0.85 + structural bonus × 0.15, capped at 1.0.
+Final reward = LLM score × 0.85 + structural bonus × 0.15, clamped to (0.01, 0.99).
+
+### Task 1 Grader — Research Analysis (`research_analysis.md`)
+
+**Structural pre-checks** (must pass to proceed):
+- File exists
+- Word count ≥ 200
+- At least 2 markdown headers
+
+**LLM rubric:**
+
+| Criterion | Weight |
+|-----------|--------|
+| Background summary with cited sources | 0–0.20 |
+| 3+ candidate topics with pros/cons | 0–0.25 |
+| Structured comparison (table or prose) | 0–0.20 |
+| Justified selection of one topic | 0–0.15 |
+| Overall clarity, depth, accuracy | 0–0.20 |
+
+### Task 2 Grader — Experimentation (code + plots)
+
+**Structural pre-checks** (must pass to proceed):
+- At least 1 successful code execution (exit_code=0)
+- At least 1 non-markdown file generated
+
+**LLM rubric:**
+
+| Criterion | Weight |
+|-----------|--------|
+| Code quality — runs, relevant to topic | 0–0.25 |
+| Experimental rigor — non-trivial | 0–0.25 |
+| Concrete results (numbers, tables, data) | 0–0.20 |
+| Visualization (chart/plot, relevant) | 0–0.15 |
+| Reproducibility | 0–0.15 |
+
+### Task 3 Grader — Research Report (`report.md`)
+
+**Structural pre-checks** (must pass to proceed):
+- File exists
+- Word count ≥ 400
+- At least 4 markdown headers
+
+**LLM rubric:**
+
+| Criterion | Weight |
+|-----------|--------|
+| Structure (abstract → conclusion → refs) | 0–0.15 |
+| Literature coverage & citations | 0–0.15 |
+| Methodology clarity | 0–0.15 |
+| Results with data/charts | 0–0.15 |
+| Analysis depth (interpretation, not just description) | 0–0.15 |
+| Writing quality | 0–0.10 |
+| Completeness (finished product, not draft) | 0–0.15 |
 
 ## Tasks & Topics
 
